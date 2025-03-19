@@ -7,14 +7,16 @@ const fs = require('fs');
 
 //read a file
 fs.readFile('./demo.txt', (error, data)=>{
-    if(error)
+    if(error){
         console.log(error);
-
+    }else{
     // console.log(data);
     console.log(data.toString());
+    }
+    console.log('end of program');
 })
 
-console.log('end of program');
+// console.log('end of program');
 
 //create a file
 // if(!fs.existsSync('./image'))

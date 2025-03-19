@@ -1,21 +1,44 @@
 //localhost:3000
-const http = require('http');
+const http = require('http')
+const fs = require('fs')
+const path = require('path')
 
 const server = http.createServer((req,res)=>{
-    console.log('Request received');
+    
+    let path = './page/'
+    switch(req.url)
+    {
+        case '/':
+            path += 'index.html'
+            res.statusCode = 200
+            break;
+        case '/about':
+            path += 'about.html'
+            res.statusCode = 200
+            break;
+        case '/aboutme':
+            res.statusCode = 301
+            res.setHeader('Location','/about')
+            res.end()
+            break;
+        default:
+            path += '404.html'
+            res.statusCode = 404
+            break;
+    }
 
-    // console.log(req)
-    console.log(req.url)
-    console.log(req.method)
+    console.log(path);
 
-    res.setHeader('Content-Type','text/plain')
-    res.write('Hello World')
-    res.end()
+    res.setHeader('Content-Type','text/html')
 
-    // res.setHeader('Content-Type','text/html')
-    // res.write('<meta charset="UTF-8">')
-    // res.write('<h1>Hello World</h1>')
-    // res.write('<h2>你好</h2>')
+    fs.readFile(path,(error,data)=>{
+        if(error)
+            console.log(error)
+        else
+            res.write(data)
+
+        res.end()
+    })
     // res.end()
 })
 
