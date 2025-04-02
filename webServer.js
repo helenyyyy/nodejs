@@ -1,7 +1,14 @@
 //localhost:3000
 const http = require('http')
 const fs = require('fs')
-const path = require('path')
+var dayjs = require('dayjs')
+
+//install nodemon and dayjs
+//npm install (will install package.json all dependencies)
+console.log(dayjs().year())
+console.log(dayjs().hour())
+console.log(dayjs().minute())
+console.log(dayjs().second())
 
 const server = http.createServer((req,res)=>{
     
@@ -16,7 +23,7 @@ const server = http.createServer((req,res)=>{
             path += 'about.html'
             res.statusCode = 200
             break;
-        case '/aboutme':
+        case '/aboutus':
             res.statusCode = 301
             res.setHeader('Location','/about')
             res.end()
