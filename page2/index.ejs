@@ -1,0 +1,18 @@
+<%- include('header.ejs') %>
+        <h1>HOME</h1>
+
+        <form action = '/' method = "POST">
+            Username : <input type = "text" name = "username" required><br/>
+            Password : <input type = "password" name = "password" required><br/>
+            <input type = "submit" value = "Login">
+        </form>
+
+        <h2><%=time%></h2>
+        <% if(blogs.length) { %>
+
+            <% blogs.forEach(article => { %>
+                <h3>Title : <%=article.title%></h3>
+                <p>Author : <%=article.author%></p>
+            <% }) %>
+        <% } %>
+        <%- include('footer.ejs') %>
